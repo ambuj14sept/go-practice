@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/signal"
 	"students/internal/config"
+	"students/internal/http/handlers/student"
 	"syscall"
 	"time"
 )
@@ -18,9 +19,7 @@ func main(){
 	// database setup
 	// router setup
 	router := http.NewServeMux()
-	router.HandleFunc("GET /", func (w http.ResponseWriter, r *http.Request)  {
-		w.Write([]byte("welcome to students api"))
-	})
+	router.HandleFunc("POST /api/students", student.New())
 	// server setup
 
 	server := http.Server {
